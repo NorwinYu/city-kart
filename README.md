@@ -10,8 +10,7 @@
 - `features.html` — 全部游戏功能的高品质实机截图
 - `iterations.html` — 从原型到最终版本的迭代过程，以及使用的 Skill
 - `screenshots/` — 页面引用的全部本地画面（WebP）
-- `.nojekyll` — 让 GitHub Pages 不经 Jekyll 处理静态文件
-- `.github/workflows/pages.yml` — 推送到 `main` 后自动发布 GitHub Pages
+- `.nojekyll` — 让 GitHub Pages 不经 Jekyll 处理静态文件（部署源使用分支时有用）
 
 ## 发布到 GitHub Pages
 
@@ -27,10 +26,13 @@ git remote add origin https://github.com/<your-account>/<your-repo>.git
 git push -u origin main
 ```
 
-3. 仓库内已经包含 `.github/workflows/pages.yml`。推送到 `main` 后，Actions 会自动配置并发布 GitHub Pages。
-4. 如果 Actions 被仓库策略禁用，打开 **Settings → Pages**，把 **Build and deployment** 的 Source 改为 **GitHub Actions**，然后在 **Actions** 页手动运行一次 `Deploy Sundown Circuit to Pages`。
-5. 等待工作流完成，在 **Settings → Pages** 查看站点 URL。也可以继续使用 **Deploy from a branch / main / (root)** 作为替代方案。
-6. 发布完成后，入口是 `index.html`，全功能截图页是 `features.html`，制作记录是 `iterations.html`。
+3. 打开仓库的 **Settings → Pages**。
+4. 在 **Build and deployment** 中选择 **Deploy from a branch**。
+5. 分支选择 **main**，目录选择 **/(root)**，保存。
+6. 等待约一分钟，在 **Settings → Pages** 顶部查看站点 URL。
+7. 发布完成后，入口是 `index.html`，全功能截图页是 `features.html`，制作记录是 `iterations.html`。
+
+> 首次启用 Pages 必须由仓库管理员在 GitHub 设置中完成；普通的 `git push` 或仓库内的临时令牌没有创建 Pages site 的管理员权限。
 
 > 将 `<your-account>` 和 `<your-repo>` 替换为你自己的账号和仓库名。本文件夹不包含账号名、电子邮箱、服务器地址或任何个人资料。
 
