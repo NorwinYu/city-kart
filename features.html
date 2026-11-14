@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1118">
+<meta name="description" content="落日环线城市卡丁车：主菜单、倒计时、漂移、氮气、赛道补给、清扫车、路障、最终圈、暂停、设置、胜利、失败与移动触控实机截图。">
+<title>全功能截图 · 落日环线</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121a24'/%3E%3Cpath d='M10 42h44L44 24H20z' fill='%23ff6b3d'/%3E%3Ccircle cx='21' cy='45' r='7' fill='%23f5e6cf'/%3E%3Ccircle cx='44' cy='45' r='7' fill='%23f5e6cf'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#0a1017;--panel:#111a23;--panel2:#0d151d;--cream:#fff1d8;--bone:#d8cbb8;--muted:#8b979b;--line:rgba(255,241,216,.15);--orange:#ff6a3d;--amber:#ffbb63;--cyan:#77e7ff;--ink:#191511}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--cream);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(18px,4vw,52px);background:rgba(8,13,20,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav .brand{display:flex;align-items:center;gap:10px;font:800 13px/1 "Arial Narrow","Helvetica Neue",Impact,sans-serif;letter-spacing:.08em;text-decoration:none}
+.nav .brand i{width:8px;height:8px;background:var(--orange);transform:rotate(45deg)}
+.nav .links{display:flex;align-items:center;gap:20px;font:600 9px/1 "SFMono-Regular",Menlo,monospace;letter-spacing:.13em;text-transform:uppercase;color:#a8b1b2}
+.nav .links a{text-decoration:none}
+.nav .links a:hover{color:var(--amber)}
+.nav .play{color:var(--cream);border:1px solid rgba(255,106,61,.6);padding:9px 12px;background:rgba(255,106,61,.12)}
+.wrap{max-width:1420px;margin:0 auto;padding:0 clamp(18px,4vw,52px)}
+.hero{padding:70px 0 48px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:end}
+.kicker{font:600 10px/1.4 "SFMono-Regular",Menlo,monospace;letter-spacing:.25em;color:var(--amber);text-transform:uppercase}
+h1{margin:18px 0 18px;font:900 clamp(60px,8.5vw,130px)/.79 "Arial Narrow","Helvetica Neue",Impact,"PingFang SC",sans-serif;letter-spacing:-.045em}
+h1 span{display:block;color:var(--orange);font-size:.29em;letter-spacing:.015em;margin-top:16px}
+.lede{color:var(--bone);max-width:580px;font-size:14px;line-height:1.9;margin:0}
+.hero-meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:28px}
+.hero-meta div{border-left:1px solid var(--line);padding-left:12px}
+.hero-meta small{display:block;font:500 8px/1 "SFMono-Regular",monospace;letter-spacing:.14em;color:var(--muted)}
+.hero-meta b{display:block;margin-top:6px;font:800 18px/1 "Arial Narrow",sans-serif}
+.hero-shot{position:relative;border:1px solid var(--line);overflow:hidden;background:#111}
+.hero-shot img{display:block;width:100%;height:auto;filter:saturate(1.02)}
+.hero-shot .caption{position:absolute;left:12px;bottom:10px;background:rgba(8,13,19,.62);border:1px solid var(--line);padding:7px 9px;font:500 8px/1 "SFMono-Regular",monospace;letter-spacing:.08em;color:#c9d0cc;backdrop-filter:blur(8px)}
+.section{padding:56px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:24px}
+h2{margin:0;font:800 clamp(28px,4vw,48px)/1 "Arial Narrow","Helvetica Neue",Impact,"PingFang SC",sans-serif;letter-spacing:-.02em}
+h2 small{display:block;font:500 9px/1 "SFMono-Regular",monospace;letter-spacing:.19em;color:var(--muted);margin-top:10px}
+.section-head p{margin:0;max-width:370px;color:var(--muted);font-size:11px;line-height:1.7;text-align:right}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+figure{margin:0;border:1px solid var(--line);background:var(--panel);overflow:hidden}
+figure a{display:block;background:#05090d}
+figure img{display:block;width:100%;height:auto}
+figcaption{padding:15px 16px 17px;border-top:1px solid var(--line)}
+.fnumber{font:600 8px/1 "SFMono-Regular",monospace;letter-spacing:.16em;color:var(--orange)}
+figcaption h3{margin:8px 0 5px;font-size:15px;font-weight:600;letter-spacing:.01em}
+figcaption p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:11px}
+.tags span{font:500 8px/1 "SFMono-Regular",monospace;color:#c2cbc5;border:1px solid var(--line);padding:4px 6px;letter-spacing:.04em}
+.wide{grid-column:1/-1}
+.mobile-section{display:grid;grid-template-columns:minmax(0,.7fr) minmax(260px,.3fr);gap:24px;align-items:stretch}
+.phone{background:var(--panel);border:1px solid var(--line);padding:18px;display:flex;justify-content:center}
+.phone img{width:auto;height:680px;max-width:100%;display:block}
+.mobile-copy{padding:8px 4px}
+.mobile-copy h3{margin:0 0 14px;font:800 32px/1 "Arial Narrow",sans-serif;color:var(--cream)}
+.mobile-copy p{color:var(--bone);font-size:12px;line-height:1.8}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.chips span{font:500 9px/1.4 "SFMono-Regular",monospace;border:1px solid var(--line);padding:7px 8px;color:#cbd2cc}
+.systems{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:24px}
+.systems div{background:var(--panel);padding:17px}
+.systems small{font:600 8px/1 "SFMono-Regular",monospace;letter-spacing:.15em;color:var(--amber);text-transform:uppercase}
+.systems strong{display:block;margin:9px 0 7px;font-size:13px}
+.systems p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}
+.callout{border:1px solid var(--line);background:linear-gradient(110deg,rgba(255,106,61,.1),rgba(17,26,35,.8));padding:25px 26px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin-top:20px}
+.callout .kicker{color:var(--amber)}
+.callout h3{margin:10px 0 7px;font:800 30px/1 "Arial Narrow",sans-serif}
+.callout p{margin:0;color:var(--bone);font-size:12px;line-height:1.8}
+.callout .skill{border-left:1px solid rgba(255,187,99,.3);padding-left:24px}
+.callout .skill b{display:block;font:700 12px/1.4 "SFMono-Regular",monospace;color:var(--cream);margin-bottom:7px}
+.callout .skill small{display:block;color:var(--muted);font-size:10px;line-height:1.75}
+.cta{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:52px 0 70px}
+.cta h2{font-size:clamp(32px,5vw,62px)}
+.cta p{color:var(--muted);font-size:12px;margin:11px 0 0}
+.btn{display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 18px;border:1px solid var(--line);text-decoration:none;font:600 10px/1 "SFMono-Regular",monospace;letter-spacing:.09em;text-transform:uppercase}
+.btn.primary{background:var(--orange);border-color:var(--orange);color:var(--ink)}
+.btn:hover{filter:brightness(1.08)}
+.footer{border-top:1px solid var(--line);padding:22px 0 36px;color:#6d7b80;font:500 9px/1.7 "SFMono-Regular",monospace;letter-spacing:.03em;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer a{text-decoration:none;color:#a6b0b2}
+@media(max-width:1000px){.hero{grid-template-columns:1fr;gap:30px}.systems{grid-template-columns:1fr 1fr}.mobile-section{grid-template-columns:1fr}.phone img{height:auto;max-height:680px}}
+@media(max-width:700px){.nav .links a:nth-child(2){display:none}.grid{grid-template-columns:1fr}.hero{padding-top:44px}h1{font-size:59px}.section{padding:40px 0}.section-head{display:block}.section-head p{text-align:left;margin-top:14px}.callout{grid-template-columns:1fr}.callout .skill{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:17px}.systems{grid-template-columns:1fr}.nav .links{gap:12px}.footer{display:block}.footer span{display:block;margin-top:8px}.wide{grid-column:auto}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="index.html"><i></i>SUNDOWN CIRCUIT</a>
+  <div class="links">
+    <a href="features.html" style="color:var(--amber)">Features</a>
+    <a href="iterations.html">Process</a>
+    <a class="play" href="index.html">Play game ↗</a>
+  </div>
+</nav>
+<main class="wrap">
+  <header class="hero">
+    <div>
+      <div class="kicker">FEATURE ARCHIVE · 实机画面 · 1280 × 720</div>
+      <h1>一场比赛<span>ALL SYSTEMS, ONE RACE</span></h1>
+      <p class="lede">从发车灯亮起，到领奖台的那一刻：赛道、AI、漂移蓄能、氮气、补给、城市危险物、界面、声音和触控，全部被塞进一个约两分钟的晴湾环城赛中。</p>
+      <div class="hero-meta">
+        <div><small>CIRCUIT</small><b>860 M · 18 TURNS</b></div>
+        <div><small>RACE</small><b>3 LAPS · 6 KARTS</b></div>
+        <div><small>FORMAT</small><b>ONE OFFLINE HTML</b></div>
+      </div>
+    </div>
+    <div class="hero-shot"><a href="screenshots/feature-01-title.webp"><img src="screenshots/feature-01-title.webp" alt="落日环线主菜单与 07 号卡丁车"></a><span class="caption">TITLE · HERO KART 07 · SUNDOWN BAY</span></div>
+  </header>
+
+  <section class="section" id="shotlist">
+    <div class="section-head"><div><h2>所有功能截图 <small>GAME FEATURES / IN-GAME CAPTURES</small></h2></div><p>以下全部为游戏真实运行时画面。点击图片查看原始尺寸。个别画面通过运行时状态布置突出对应系统，不是概念图；场景、物理、HUD 与效果均来自游戏本身。</p></div>
+    <div class="grid">
+      <figure><a href="screenshots/feature-02-countdown.webp"><img src="screenshots/feature-02-countdown.webp" alt="三盏发车灯与倒计时界面"></a><figcaption><span class="fnumber">FEATURE 01</span><h3>发车灯与倒计时</h3><p>发车灯、倒计时数字、晴天湾电台提示。按住油门在绿灯时获得完美起步。</p><div class="tags"><span>START SEQUENCE</span><span>LIGHTS</span><span>RADIO</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-03-race.webp"><img src="screenshots/feature-03-race.webp" alt="比赛中段，玩家与 AI 对手并排竞速"></a><figcaption><span class="fnumber">FEATURE 02</span><h3>三圈城市竞速</h3><p>五台 AI 对手、圈速与名次、车体耐久、氮气槽、漂移蓄能、小地图和目标进度。</p><div class="tags"><span>6 KARTS</span><span>AI</span><span>HUD</span><span>MINIMAP</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-04-drift.webp"><img src="screenshots/feature-04-drift.webp" alt="卡丁车漂移、胎痕与漂移蓄能条"></a><figcaption><span class="fnumber">FEATURE 03</span><h3>漂移蓄能</h3><p>松开方向与漂移键之间的时机就是全部。蓄能越久，松开后的三级推进越强；胎痕和烟雾留下轨迹。</p><div class="tags"><span>DRIFT</span><span>CHARGE</span><span>PARTICLES</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-05-nitro.webp"><img src="screenshots/feature-05-nitro.webp" alt="氮气加速时的速度线、火焰和 HUD"></a><figcaption><span class="fnumber">FEATURE 04</span><h3>氮气冲刺</h3><p>消耗氮气槽注入推力。FOV 拉伸、速度线、蓝色排气火焰与相机抖动一起把速度感推到极限。</p><div class="tags"><span>NITRO</span><span>FOV</span><span>EXHAUST FX</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-06-pickups.webp"><img src="screenshots/feature-06-pickups.webp" alt="前方悬浮的太阳能电池补给"></a><figcaption><span class="fnumber">FEATURE 05</span><h3>太阳能电池</h3><p>金色太阳能电池悬浮在赛车线上，穿过即可补充氮气并修复车体。实体、光晕、拾取音效与 HUD 数值同时变化。</p><div class="tags"><span>SOLAR CELL</span><span>NITRO +22</span><span>HULL +8</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-07-boostpad.webp"><img src="screenshots/feature-07-boostpad.webp" alt="青色导光带加速板"></a><figcaption><span class="fnumber">FEATURE 06</span><h3>导光带</h3><p>青色导光带铺在路面上，碾过即获得瞬时推力并补充少量氮气。它是赛道设计的一部分，也是漂移之外的第二种加速资源。</p><div class="tags"><span>BOOST PAD</span><span>INSTANT PUSH</span><span>NITRO +11</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-08-sweeper.webp"><img src="screenshots/feature-08-sweeper.webp" alt="横穿赛道的清扫车和警告图标"></a><figcaption><span class="fnumber">FEATURE 07</span><h3>清扫车危险</h3><p>两辆清扫车按周期横穿赛道。世界空间感叹号、频闪灯和电台/HUD 预警同时出现，避开后继续推进。</p><div class="tags"><span>MOVING HAZARD</span><span>STROBE</span><span>WARNING</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-09-barricade.webp"><img src="screenshots/feature-09-barricade.webp" alt="施工路障占据一条赛车线"></a><figcaption><span class="fnumber">FEATURE 08</span><h3>施工路障</h3><p>固定路障占据一条线路，迫使玩家在高速中选择走线。撞上会扣车体耐久并推离轨迹。</p><div class="tags"><span>STATIC HAZARD</span><span>ROUTE</span><span>DAMAGE</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-10-final-lap.webp"><img src="screenshots/feature-10-final-lap.webp" alt="最后一圈提示与电台字幕"></a><figcaption><span class="fnumber">FEATURE 09</span><h3>最后一圈</h3><p>目标链、圈数、电台字幕与中央提示一起进入最后一圈。前三名才能登上领奖台。</p><div class="tags"><span>FINAL LAP</span><span>RADIO</span><span>OBJECTIVE</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-11-pause.webp"><img src="screenshots/feature-11-pause.webp" alt="暂停菜单，含名次、圈数和时间"></a><figcaption><span class="fnumber">FEATURE 10</span><h3>暂停与比赛控制</h3><p>暂停画面保留当前名次、圈数、比赛时间，可继续、设置、重新开始或返回主菜单。</p><div class="tags"><span>PAUSE</span><span>RESUME</span><span>RESTART</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-12-settings.webp"><img src="screenshots/feature-12-settings.webp" alt="驾驶设置界面，含灵敏度、FOV、音量、震动和画质"></a><figcaption><span class="fnumber">FEATURE 11</span><h3>设置与持久化</h3><p>转向灵敏度、FOV、主音量、镜头抖动、画质与小地图。静音与所有设置写入本地存储。</p><div class="tags"><span>SETTINGS</span><span>QUALITY</span><span>LOCAL SAVE</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-13-win.webp"><img src="screenshots/feature-13-win.webp" alt="冠军胜利结算画面"></a><figcaption><span class="fnumber">FEATURE 12</span><h3>胜利结算</h3><p>名次、总时间、最快圈、最高速度与本机新纪录。可立即再跑一圈或返回菜单。</p><div class="tags"><span>VICTORY</span><span>BEST LAP</span><span>RETRY</span></div></figcaption></figure>
+      <figure><a href="screenshots/feature-14-lose.webp"><img src="screenshots/feature-14-lose.webp" alt="第四名失败结算画面"></a><figcaption><span class="fnumber">FEATURE 13</span><h3>失败与退赛</h3><p>第四至第六名完赛或车体耐久归零都会进入失败结算，并显示具体原因；重开流程完整可用。</p><div class="tags"><span>DEFEAT</span><span>DNF</span><span>RESTART</span></div></figcaption></figure>
+      <figure class="wide"><a href="screenshots/feature-15-world.webp"><img src="screenshots/feature-15-world.webp" alt="隐藏 HUD 后的晴湾城市与环境"></a><figcaption><span class="fnumber">FEATURE 14</span><h3>晴湾市与环线环境</h3><p>程序生成的日落天空、云层、城市楼群、Helios 塔、商店、霓虹招牌、树冠、观众与灯柱；全部实时渲染，无外部美术资源。</p><div class="tags"><span>PROCEDURAL CITY</span><span>SUNDOWN SKY</span><span>WORLD</span></div></figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2>移动端与声音 <small>TOUCH / AUDIO / FEEDBACK</small></h2></div><p>小屏不是缩小的桌面版：触控区域、按键位置、提示文案和 HUD 都会重新排布。</p></div>
+    <div class="mobile-section">
+      <div class="phone"><a href="screenshots/feature-16-mobile.webp"><img src="screenshots/feature-16-mobile.webp" alt="390×844 手机上的游戏与触控操作"></a></div>
+      <div class="mobile-copy">
+        <div class="kicker">390 × 844 / TOUCH</div>
+        <h3>拇指能完成全部操作。</h3>
+        <p>左侧方向、右侧油门，刹车/漂移/氮气围绕拇指布局；标题、目标、圈数、时间与名次在竖屏上重新排列，页面无横向溢出。</p>
+        <div class="chips"><span>左 / 右转向</span><span>油门</span><span>刹车</span><span>漂移</span><span>氮气</span><span>iOS / Android 浏览器</span></div>
+        <div class="systems" style="grid-template-columns:1fr;margin-top:24px">
+          <div><small>AUDIO · SYNTHESIZED</small><strong>引擎、风噪、胎噪、碰撞、电台提示与合成器音乐</strong><p>所有声音都由 Web Audio 实时合成，没有录音素材；首次点击后启动音频，主音量和静音随时可调。</p></div>
+          <div><small>FEEL · FEEDBACK</small><strong>漂移烟雾、胎痕、火花、速度线、车体倾斜与 FOV</strong><p>每次操作都有视觉与听觉两种反馈：收集、撞击、冲刺、圈速和结算都不会沉默。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="callout">
+      <div><div class="kicker">BUILT WITH A PROCEDURE, NOT REFERENCES</div><h3>技能：photoreal-game</h3><p>开发遵循 <b>photoreal-game</b> skill 的工程顺序：完整可玩外壳 → 固定机位截图 → 画面、光照、密度 → 碰撞和实机试玩 → 移动端与性能验收。它不是素材包；项目中没有任何来自参考图片、模型、字体或音频的资产。视觉素材全部由代码和 Canvas 生成。</p></div>
+      <div class="skill"><b>SKILL / photoreal-game</b><small>用于产品外壳、迭代节奏、固定机位视觉检查、输入/碰撞/移动端与性能验证。风格化城市卡丁车美术为本项目原创，没有套用照片参考 profile；所有画面、车辆、城市、UI 与声音从头制作。</small></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div><h2>愿意亲自跑一圈吗？</h2><p>3 圈 · 6 车 · 一条穿城的日落赛道 · 单文件离线运行。</p></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" href="index.html">▶ PLAY SUNDOWN CIRCUIT</a><a class="btn" href="iterations.html">READ THE PROCESS</a></div>
+  </section>
+</main>
+<footer class="footer wrap"><span>© 2026 SUNDOWN BAY MOTOR CLUB · Independent procedural city kart game.</span><span>No external art, fonts, textures or audio. <a href="THIRD_PARTY_NOTICES.md">Third-party notices</a></span></footer>
+</body>
+</html>

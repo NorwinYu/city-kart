@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1118">
+<meta name="description" content="落日环线城市卡丁车：从第一帧程序化世界到最终单文件游戏的完整迭代记录，以及使用的 photoreal-game skill。">
+<title>迭代过程 · 落日环线</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23121a24'/%3E%3Cpath d='M10 42h44L44 24H20z' fill='%23ff6b3d'/%3E%3Ccircle cx='21' cy='45' r='7' fill='%23f5e6cf'/%3E%3Ccircle cx='44' cy='45' r='7' fill='%23f5e6cf'/%3E%3C/svg%3E">
+<style>
+:root{--bg:#0a1017;--panel:#111a23;--cream:#fff1d8;--bone:#d8cbb8;--muted:#89969a;--line:rgba(255,241,216,.15);--orange:#ff6a3d;--amber:#ffbb63;--cyan:#77e7ff;--ink:#191511}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--cream);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}
+.nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(18px,4vw,52px);background:rgba(8,13,20,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav .brand{display:flex;align-items:center;gap:10px;font:800 13px/1 "Arial Narrow","Helvetica Neue",Impact,sans-serif;letter-spacing:.08em;text-decoration:none}.nav .brand i{width:8px;height:8px;background:var(--orange);transform:rotate(45deg)}.nav .links{display:flex;align-items:center;gap:20px;font:600 9px/1 "SFMono-Regular",Menlo,monospace;letter-spacing:.13em;text-transform:uppercase;color:#a8b1b2}.nav .links a{text-decoration:none}.nav .links a:hover{color:var(--amber)}.nav .play{color:var(--cream);border:1px solid rgba(255,106,61,.6);padding:9px 12px;background:rgba(255,106,61,.12)}
+.wrap{max-width:1260px;margin:0 auto;padding:0 clamp(18px,4vw,52px)}
+.hero{padding:72px 0 52px;border-bottom:1px solid var(--line)}
+.kicker{font:600 10px/1.4 "SFMono-Regular",Menlo,monospace;letter-spacing:.24em;color:var(--amber);text-transform:uppercase}
+h1{margin:18px 0 18px;font:900 clamp(58px,9vw,132px)/.79 "Arial Narrow","Helvetica Neue",Impact,"PingFang SC",sans-serif;letter-spacing:-.05em}h1 span{display:block;color:var(--orange);font-size:.28em;letter-spacing:.015em;margin-top:17px}
+.lede{max-width:720px;color:var(--bone);font-size:14px;line-height:1.95;margin:0}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}.btn{display:inline-flex;align-items:center;height:46px;padding:0 17px;border:1px solid var(--line);text-decoration:none;font:600 10px/1 "SFMono-Regular",monospace;letter-spacing:.08em;text-transform:uppercase}.btn.primary{background:var(--orange);border-color:var(--orange);color:var(--ink)}.btn:hover{filter:brightness(1.08)}
+.skill-band{margin:38px 0 0;border:1px solid rgba(255,187,99,.32);background:linear-gradient(110deg,rgba(255,106,61,.11),rgba(17,26,35,.85));display:grid;grid-template-columns:1.2fr .8fr;gap:28px;padding:25px 26px}
+.skill-band .kicker{color:var(--amber)}.skill-band h2{margin:10px 0 8px;font:800 clamp(27px,3.4vw,42px)/1 "Arial Narrow",sans-serif;letter-spacing:-.02em}.skill-band p{margin:0;color:var(--bone);font-size:12px;line-height:1.85}.skill-band code{font-family:"SFMono-Regular",Menlo,monospace;color:var(--cyan);font-size:.95em}
+.skill-list{border-left:1px solid rgba(255,187,99,.28);padding-left:24px;color:var(--muted);font:500 10px/1.8 "SFMono-Regular",monospace}
+.skill-list b{display:block;color:var(--cream);font-size:11px;margin-bottom:5px}.skill-list ul{padding:0;margin:0;list-style:none}.skill-list li{margin:4px 0}.skill-list li:before{content:"—";color:var(--orange);margin-right:7px}
+.section{padding:54px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;margin-bottom:22px}
+h2.big{margin:0;font:800 clamp(30px,4.6vw,54px)/1 "Arial Narrow",sans-serif;letter-spacing:-.025em}h2.big small{display:block;margin-top:10px;font:500 9px/1 "SFMono-Regular",monospace;letter-spacing:.18em;color:var(--muted)}
+.section-head p{margin:0;max-width:360px;color:var(--muted);font-size:11px;line-height:1.7;text-align:right}
+.hero-image{border:1px solid var(--line);display:block;background:#05090d}.hero-image img{display:block;width:100%;height:auto}.caption{color:var(--muted);font:500 10px/1.7 "SFMono-Regular",monospace;margin-top:9px}
+.timeline{position:relative;margin-top:30px;border-top:1px solid var(--line)}
+.stage{display:grid;grid-template-columns:78px minmax(0,.9fr) minmax(0,1.1fr);gap:26px;padding:28px 0;border-bottom:1px solid var(--line)}
+.stage .num{font:800 38px/1 "Arial Narrow",sans-serif;color:var(--orange)}
+.stage h3{margin:0 0 8px;font-size:18px;color:var(--cream)}.stage p{margin:0;color:var(--bone);font-size:12px;line-height:1.85}.stage .meta{font:500 9px/1.6 "SFMono-Regular",monospace;color:var(--amber);letter-spacing:.06em;margin-top:10px}
+.stage .shot{border:1px solid var(--line);background:var(--panel);align-self:start}.stage .shot img{display:block;width:100%;height:auto}.stage .shot span{display:block;padding:9px 10px;border-top:1px solid var(--line);font:500 9px/1.4 "SFMono-Regular",monospace;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:19px}.two figure{margin:0;border:1px solid var(--line);background:var(--panel)}.two figure img{display:block;width:100%;height:auto}.two figcaption{padding:11px 12px;border-top:1px solid var(--line);color:var(--muted);font:500 9px/1.5 "SFMono-Regular",monospace}
+.qa{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid var(--line);background:var(--line);margin-top:22px}.qa div{background:var(--panel);padding:17px}.qa small{display:block;color:var(--muted);font:500 8px/1 "SFMono-Regular",monospace;letter-spacing:.14em}.qa b{display:block;margin-top:8px;font:800 23px/1 "Arial Narrow",sans-serif;color:var(--cream)}.qa b span{font:500 9px/1 "SFMono-Regular",monospace;color:var(--muted)}
+.note{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}.note div{border:1px solid var(--line);background:var(--panel);padding:17px}.note h3{margin:0 0 8px;font-size:13px}.note p{margin:0;color:var(--muted);font-size:11px;line-height:1.8}.note .tag{font:500 8px/1 "SFMono-Regular",monospace;letter-spacing:.13em;color:var(--amber);margin-bottom:8px}
+.cta{display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap;padding:45px 0 64px}.cta h2{margin:0;font:800 clamp(31px,4.7vw,58px)/1 "Arial Narrow",sans-serif}.cta p{margin:10px 0 0;color:var(--muted);font-size:11px;line-height:1.7}
+.footer{border-top:1px solid var(--line);padding:22px 0 36px;color:#6d7b80;font:500 9px/1.7 "SFMono-Regular",monospace;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.footer a{color:#a6b0b2;text-decoration:none}
+@media(max-width:940px){.stage{grid-template-columns:54px 1fr}.stage .shot{grid-column:2}.skill-band{grid-template-columns:1fr}.skill-list{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:16px}.qa{grid-template-columns:1fr 1fr}.note{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
+@media(max-width:640px){.nav .links a:nth-child(2){display:none}.hero{padding-top:44px}h1{font-size:56px}.wrap{padding:0 15px}.stage{gap:13px;grid-template-columns:44px 1fr}.stage .num{font-size:26px}.stage .shot{grid-column:1/-1}.section-head{display:block}.section-head p{text-align:left;margin-top:12px}.qa{grid-template-columns:1fr 1fr}.footer{display:block}.footer span{display:block;margin-top:8px}.cta{padding-top:34px}.nav .links{gap:11px}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a class="brand" href="index.html"><i></i>SUNDOWN CIRCUIT</a>
+  <div class="links"><a href="features.html">Features</a><a href="iterations.html" style="color:var(--amber)">Process</a><a class="play" href="index.html">Play game ↗</a></div>
+</nav>
+<main class="wrap">
+  <header class="hero">
+    <div class="kicker">BUILD LOG · 01 SHIP · ZERO EXTERNAL ASSETS</div>
+    <h1>从第一帧，到冲线<span>THE MAKING OF SUNDOWN CIRCUIT</span></h1>
+    <p class="lede">没有参考图，没有外部模型、贴图、字体或录音。一个闭环赛道、六台程序化卡丁车、一座城市和一套比赛规则，被逐轮做成一个 HTML。下面保留每一轮实际运行截图与修改理由。</p>
+    <div class="hero-actions"><a class="btn primary" href="index.html">▶ PLAY THE GAME</a><a class="btn" href="features.html">ALL FEATURE SHOTS</a></div>
+    <div class="skill-band">
+      <div><div class="kicker">BUILD METHOD / SKILL</div><h2>使用的 Skill：<code>photoreal-game</code></h2><p>本项目按 <code>photoreal-game</code> skill 的工程顺序推进：先做完整可玩的产品外壳，再进行固定机位截图、主光/材质/城市密度迭代，随后验证碰撞、实机试玩、移动端与性能，并为每一轮保存证据。Skill 是流程与验收纪律，不是素材包；最终游戏里的城市、车辆、UI、纹理和声音全部为本项目原创代码生成。视觉风格选择“电影感街机”而非照片复刻，因此不套用真实照片参考 profile。</p></div>
+      <div class="skill-list"><b>skill 提供 / USED FOR</b><ul><li>产品优先的完整比赛外壳</li><li>固定机位截图与迭代节奏</li><li>光照、材质、密度检查方法</li><li>碰撞、试玩、移动端、性能验收</li><li>页面契约与 QA 记录</li></ul></div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-head"><div><h2 class="big">迭代时间线 <small>ITERATION TIMELINE / SIX CAPTURES</small></h2></div><p>每一轮只针对上一张图中最明显的问题做一类改动，然后再次截图验证。</p></div>
+    <a class="hero-image" href="screenshots/iteration-timeline.webp"><img src="screenshots/iteration-timeline.webp" alt="六个阶段的迭代画面"></a>
+    <div class="caption">01 世界与卡丁车原型 → 02 首个 HUD / 赛道 → 03 自绘日落 → 04 街道密度 → 05 最终主视觉 → 06 最终比赛。</div>
+
+    <div class="timeline">
+      <article class="stage"><div class="num">01</div><div><h3>先让世界与驾驶成立</h3><p>先搭出 860 米闭环、程序化街区、卡丁车、发车格、键盘驾驶、三圈目标和基础 HUD。真车速度、阴影和天际线都还很原始，但完整闭环已经可跑。</p><div class="meta">FIRST RENDER · WORLD / KART / RACE LOOP</div></div><div class="shot"><img src="screenshots/iteration-01-world.webp" loading="lazy" alt="第一版世界与卡丁车原型"><span>FIRST RENDER · prototype light / first chase camera</span></div></article>
+      <article class="stage"><div class="num">02</div><div><h3>把日落做成一门主光</h3><p>第一张实机 HUD 截图暴露了灰天空、平光、过曝高光与廉价沥青。于是编写自己的天空穹顶、云层和太阳盘；统一太阳方向、阴影相机、PMREM 环境光、ACES 曝光与 Bloom，重新排布 HUD。</p><div class="meta">AUTHORED SUNSET · SHADOWS · COMPOSITION</div></div><div class="shot"><img src="screenshots/iteration-02-hud.webp" loading="lazy" alt="第一版 HUD 和赛道"><span>FIRST HUD · before the authored sky pass</span></div></article>
+      <article class="stage"><div class="num">03</div><div><h3>让城市有人，让赛道有事件</h3><p>加入 9 个街边店铺、屋顶招牌、观众、灯池、树冠叶片、护栏广告、清扫车、施工路障、太阳能电池与导光带；同时把 AI、最后一圈、失败路径、小地图和触控布局补齐。标题从车群中裁出一台 07 号车作为英雄。</p><div class="meta">CITY DENSITY · HAZARDS · AI · HUD</div></div><div class="shot"><img src="screenshots/iteration-03-sunset.webp" loading="lazy" alt="自绘日落与城市密度版本"><span>AUTHORED SKY · records moved above the road</span></div></article>
+      <article class="stage"><div class="num">04</div><div><h3>工艺收尾与可交付性</h3><p>发现空气阻力误乘了帧数，导致极速只有 ~9 km/h；修正后全自动巡航才能真实完成三圈。随后补上头盔面罩、后脑号码、尾翼端板、树冠细节、移动端刹车键位和单文件离线构建，并用实机状态验证胜利/失败/退赛/重开。</p><div class="meta">FINAL POLISH · QA · SINGLE FILE</div></div><div class="shot"><img src="screenshots/iteration-04-race.webp" loading="lazy" alt="最终比赛画面"><span>FINAL RACE · real gameplay, not a staged still</span></div></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2 class="big">最终画面 <small>FINAL BUILD · RUNTIME CAPTURES</small></h2></div><p>所有画面、HUD、粒子和云层均来自游戏实际运行。</p></div>
+    <div class="two">
+      <figure><img src="screenshots/final-title.webp" loading="lazy" alt="最终主菜单"><figcaption>FINAL TITLE · hero kart / local records / track route</figcaption></figure>
+      <figure><img src="screenshots/final-race.webp" loading="lazy" alt="最终比赛画面"><figcaption>FINAL RACE · 6 karts / 3 laps / moving hazards</figcaption></figure>
+      <figure><img src="screenshots/final-win.webp" loading="lazy" alt="胜利结算"><figcaption>PODIUM · personal best / retry / return to menu</figcaption></figure>
+      <figure><img src="screenshots/final-lose.webp" loading="lazy" alt="第四名失败结算"><figcaption>DEFEAT · P4 / named failure reason / retry</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><div><h2 class="big">验收数字 <small>PLAYTEST & ENGINEERING CHECKS</small></h2></div><p>自动巡航通过真实游戏循环运行，没有跳过物理、碰撞、圈数或结算。</p></div>
+    <div class="qa">
+      <div><small>3 LAP AUTOPILOT</small><b>84.43<span> s</span></b></div>
+      <div><small>BEST LAP</small><b>25.95<span> s</span></b></div>
+      <div><small>FINISH</small><b>P1<span> / 6</span></b></div>
+      <div><small>MOBILE OVERFLOW</small><b>0<span> px</span></b></div>
+    </div>
+    <div class="note">
+      <div><div class="tag">LOOP</div><h3>完整可玩</h3><p>标题、发车灯、3 圈、漂移、氮气、两类危险物、最终圈、暂停、设置、胜利、失败、DNF、重开与返回菜单。</p></div>
+      <div><div class="tag">SOLIDS</div><h3>赛道边界</h3><p>车辆由中心线投影和横向限制约束；清扫车、路障、对手都有独立碰撞。自动巡航可以完整通过全部三圈。</p></div>
+      <div><div class="tag">PRIVACY / OFFLINE</div><h3>无外部请求</h3><p>单文件 880 KB；所有贴图、模型、字体、粒子与音频均由代码生成。无统计、无分析、无个人数据，可直接用 file:// 打开。</p></div>
+    </div>
+  </section>
+
+  <section class="cta"><div><h2>现在，轮到你冲线。</h2><p>860 米 · 18 个弯 · 3 圈 · 6 台卡丁车 · 一个 HTML。</p></div><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" href="index.html">▶ PLAY SUNDOWN CIRCUIT</a><a class="btn" href="features.html">VIEW FEATURE SHOTS</a></div></section>
+</main>
+<footer class="footer wrap"><span>© 2026 SUNDOWN BAY MOTOR CLUB · Independent procedural city kart game.</span><span>Build method: photoreal-game skill · Three.js MIT · no external assets.</span></footer>
+</body>
+</html>
